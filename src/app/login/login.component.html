@@ -1,0 +1,24 @@
+<div class="login-wrapper">
+  <form class="login">
+      <section class="title">
+          <h3 class="welcome">Bem vindo</h3>
+          MEU SISTEMA
+          <h5 class="hint">Use seu usuário e senha para acessar</h5>
+      </section>
+      <div class="login-group">
+          <clr-input-container>
+              <label class="clr-sr-only">Usuário</label>
+              <input type="text" name="username" clrInput placeholder="Usuário" [(ngModel)]="login.username"/>
+          </clr-input-container>
+          <clr-password-container>
+              <label class="clr-sr-only">Senha</label>
+              <input type="password" name="password" clrPassword placeholder="Senha" [(ngModel)]="login.password"/>
+          </clr-password-container>
+          <div class="error active" *ngIf="erroLogin">
+              Usuário ou senha inválido
+          </div>
+          <button type="button" class="btn btn-primary" (click)="realizarLogin()">Entrar</button>
+          <a href="javascript://" class="signup">Esqueci minha senha</a>
+      </div>
+  </form>
+</div>
