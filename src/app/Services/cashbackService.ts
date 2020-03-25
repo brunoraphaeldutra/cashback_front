@@ -11,20 +11,20 @@ export class CashBackService {
   constructor(protected httpClient: HttpClient) { }
 
   public findPurchase(cpf): Observable<any> {
-    return this.httpClient.get(`http://127.0.0.1:5000/api/purchase?cpf=${cpf}`);
+    return this.httpClient.get(`http://127.0.0.1:5000/api/purchase?cpf=${cpf}`).pipe(take(1));
   }
 
   public getCashBackAmount(cpf): Observable<any> {
-    return this.httpClient.get(`http://127.0.0.1:5000/api/cashback?cpf=${cpf}`);
+    return this.httpClient.get(`http://127.0.0.1:5000/api/cashback?cpf=${cpf}`).pipe(take(1));
   }
 
   public addReseller(reseller): Observable<any> {
     console.log(JSON.stringify(reseller));
-    return this.httpClient.post(`http://127.0.0.1:5000/api/reseller`, reseller);
+    return this.httpClient.post(`http://127.0.0.1:5000/api/reseller`, reseller).pipe(take(1));
   }
 
   public addPurchase(purchase): Observable<any> {
-    return this.httpClient.post(`http://127.0.0.1:5000/api/purchase`, purchase, {});
+    return this.httpClient.post(`http://127.0.0.1:5000/api/purchase`, purchase, {}).pipe(take(1));
   }
 
   public editPurchase(purchase): Observable<any> {

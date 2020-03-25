@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CashBackService } from '../Services/cashbackService';
+import { AuthService } from '../Services/AuthService';
+import { Reseller } from '../model/ResellerModel';
 
 @Component({
   selector: 'app-header',
@@ -10,24 +12,20 @@ export class HeaderComponent implements OnInit {
   texts: string[];
   results: string[];
   cashBack = '00010101';
+  usuario = new Reseller();
 
-  constructor(protected cashbackService: CashBackService) { }
+  constructor(protected authService: AuthService) { }
 
   ngOnInit() {
-    this.getCashBack();
+    this.getLoggedUser();
   }
 
   search(event) {
     this.results = ['valor 1', 'valor 2'];
   }
 
-  getCashBack() {
-    this.cashbackService.getCashBackAmount('04147166989').toPromise().then((a) =>
-        this.cashBack = a.body
-      ).catch((ex) => {
-      this.cashBack = '0000';
-      console.log('Erro ao consumir' + ex.message);
-      });
+  getLoggedUser() {
+    this.usuario = this.authService.getUsuario();
   }
 
 }

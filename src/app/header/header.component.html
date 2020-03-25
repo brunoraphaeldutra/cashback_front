@@ -1,27 +1,28 @@
-<header class="header-4">
+<div class="alert alert-app-level" *ngIf=false>
+    Opa!
+</div>
+<div class="progress loop" *ngIf="false" ><progress></progress></div>
+<header class="header-4" *ngIf="false">
   <div class="branding">
-    <a href="..." class="nav-link">
+    <a href="/" class="nav-link">
       <clr-icon shape="lightbulb" class="is-solid"></clr-icon>
-      <span class="title">Bruno Dutra</span>
+      <span class="title">
+        {{usuario.full_name}}
+      </span>
     </a>
   </div>
   <div class="search">
-    <label for="search_input">
-    </label>&nbsp;&nbsp;
-    <p-autoComplete [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [(ngModel)]="texts"
-      [suggestions]="results" (completeMethod)="search($event)" placeholder="Buscar...">
-      <ng-template let-brand pTemplate="item">
-        <div class="ui-helper-clearfix">
-          <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{brand}}</div>
-        </div>
-      </ng-template>
-    </p-autoComplete>
+    <div class="header-nav">
+      <a routerLink="/revendedores" routerLinkActive="active" class="nav-link nav-text">Revendedores</a>
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link nav-text">Minhas Compras</a>
+    </div>
   </div>
   <div class="header-actions">
       <clr-dropdown>
           <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-              {{cashBack | currency:'BRL':true}}
+
           </button>
       </clr-dropdown>
   </div>
 </header>
+

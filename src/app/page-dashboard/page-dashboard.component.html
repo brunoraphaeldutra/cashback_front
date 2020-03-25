@@ -1,0 +1,46 @@
+<div class="clr-row">
+    <div class="clr-col-lg-4 clr-col-md-4 clr-col-12">
+        <div class="card">
+            <div class="card-header card_texto">
+                Compras Feitas
+                <button class="btn btn-link btn-sm" (click)=getPurchases()><clr-icon shape="sync"></clr-icon></button>
+            </div>
+            <div class="card-block card_texto">
+                <div class="card-title">
+                    {{totalCompras}}
+                    <clr-icon shape="shopping-cart" style="width: 16px; height: 16px;" class="is-success"></clr-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clr-col-lg-4 clr-col-md-4 clr-col-12">
+        <div class="card">
+            <div class="card-header card_texto">
+                Saldo Atual
+                <button class="btn btn-link btn-sm" (click)=getPurchases()><clr-icon shape="sync"></clr-icon></button>
+            </div>
+            <div class="card-block card_texto">
+                <div class="card-title">
+                    {{totalCashBack | currency:'BRL':true}}
+                    <clr-icon shape="piggy-bank" style="width: 16px; height: 16px;" class="is-success"></clr-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clr-col-lg-4 clr-col-md-4 clr-col-12">
+        <div class="card">
+            <div class="card-header card_texto">
+                  Saldo Anterior
+                  <button class="btn btn-link btn-sm" (click)=getCashBack()><clr-icon shape="sync"></clr-icon></button>
+            </div>
+            <div class="card-block card_texto">
+                <div class="card-title">
+                    {{cashBack | currency:'BRL':true}}
+                    <clr-icon shape="shopping-bag" style="width: 16px; height: 16px;" class="is-success"></clr-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-purchase cpf="04147166989"></app-purchase>

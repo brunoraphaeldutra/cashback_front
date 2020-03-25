@@ -1,0 +1,28 @@
+<div class="clr-row">
+    <div class="clr-col-lg-1 clr-col-md-1">
+    </div>
+    <div class="clr-col-lg-10 clr-col-md-10 clr-col-12">
+      Adicionar novo revendedor
+      <div *ngIf="mostrarDiv">{{mensagem}}</div>
+      <form clrForm clrLayout="horizontal">
+          <clr-input-container>
+              <label>Nome Completo</label>
+              <input clrInput type="text" [(ngModel)]="itemCreate.full_name" name="code" />
+          </clr-input-container>
+          <clr-input-container>
+              <label>CPF</label>
+              <input clrInput type="text" [(ngModel)]="itemCreate.cpf" name="cpf" />
+          </clr-input-container>
+          <clr-input-container>
+              <label>Email</label>
+              <input clrInput type="email"  [(ngModel)]="itemCreate.email" name="date" />
+          </clr-input-container>
+          <clr-input-container>
+              <label>Senha</label>
+              <input clrInput type="password" [(ngModel)]="itemCreate.password" name="valor" />
+          </clr-input-container>
+      </form>
+      <button type="button" class="btn btn-outline" (click)="createReseller()">Adicionar</button>
+    </div>
+
+</div>

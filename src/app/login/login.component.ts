@@ -22,15 +22,23 @@ export class LoginComponent implements OnInit {
   }
 
   realizarLogin() {
-    this.authService.login(this.login).toPromise().then((a) => {
-      console.log(a);
-      this.authService.setToken(a.body);
-      this.router.navigate(['/']);
-    }).catch((ex) => {
-       console.log('Erro ao consumir' + ex.message);
-       this.erroLogin = true;
+    this.authService.login(this.login).subscribe((success) => {
+      this.authService.setToken(success.body);
+      this.getLoggedUser();
+    }, (error) => {
+      console.log('Erro ao consumir' + error.message);
+      this.erroLogin = true;
     });
-    console.log('Login: ', this.login);
+  }
+
+  getLoggedUser() {
+    this.authService.me().subscribe(
+      (sucess) => {
+        this.authService.setLogado(sucess.body);
+        this.router.navigate(['/']);
+    }, (error) => {
+      console.log('Erro ao consumir' + error.message);
+      });
   }
 
 }

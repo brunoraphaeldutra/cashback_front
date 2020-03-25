@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { PageResellerComponent } from './page-reseller/page-reseller.component';
+import { PageDashboardComponent } from './page-dashboard/page-dashboard.component';
 
 
 const routes: Routes = [
@@ -14,7 +16,16 @@ const routes: Routes = [
   {
     path: '',
     component: PrincipalComponent,
-    canActivate: [AuthGuardService]
+    children: [
+      {
+        path: 'dashboard',
+        component: PageDashboardComponent
+      },
+      {
+        path: 'revendedores',
+        component: PageResellerComponent
+      }
+    ]
   },
   {
     path: '**',

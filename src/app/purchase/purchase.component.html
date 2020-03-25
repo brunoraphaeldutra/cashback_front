@@ -1,103 +1,127 @@
-<div class="clr-row">
-    <div class="clr-col-lg-1 clr-col-md-1">
-    </div>
-    <div class="clr-col-lg-10 clr-col-md-10 clr-col-12">
-      Minhas compras
-      <button type="button" class="btn btn-outline" (click)="prepararCreate()">Adicionar</button>
-    </div>
-
-</div>
-<div class="clr-row"  *ngFor="let compra of compras">
-    <div class="clr-col-lg-1 clr-col-md-1">
-    </div>
-    <div class="clr-col-lg-10 clr-col-md-10 clr-col-12">
+<div class="clr-row" >
+    <div class="clr-col-lg-12 clr-col-md-12 clr-col-12">
       <div class="card">
-          <div class="card-header">
-              Compra em: {{compra.date | date:'shortDate'}}
+        <div class="card-block">
+          <div class="clr-row">
+            <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+              Data
+            </div>
+            <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+              Código
+            </div>
+            <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+              Valor
+            </div>
+            <div class="clr-col-lg-4 clr-col-md-4 clr-col-4">
+              Cashback
+            </div>
+            <div class="clr-col-lg-1 clr-col-md-1 clr-col-1">
+              <button class="btn btn-sm btn-link" (click)=prepararCreate()>
+                Nova Compra
+              </button>
+            </div>
           </div>
-          <div class="card-block">
-              <div class="card-text">
-                  Produto: {{compra.code}} <br>
-                  Valor: {{compra.value | currency:'BRL':'symbol'}} <br>
-                  Cashback: {{(compra.value_cb/100) | percent}} <br>
-                  Cashback valor: {{compra.cash_back | currency:'BRL':'symbol'}} <br>
-              </div>
-          </div>
-          <div class="card-footer">
-              <button class="btn btn-sm btn-link" (click)=prepararDelete(compra) [disabled]="compra.status == 'Aprovado'">Excluir</button>
-              <button class="btn btn-sm btn-link" (click)=prepararUpdate(compra) [disabled]="compra.status == 'Aprovado'">Editar</button>
-          </div>
-      </div>
-      <div class="clr-col-lg-1 clr-col-md-1">
         </div>
+      </div>
     </div>
+  </div>
+<div class="clr-row" *ngFor="let compra of compras">
+  <div class="clr-col-lg-12 clr-col-md-12 clr-col-12">
+    <div class="card">
+      <div class="card-block">
+        <div class="clr-row">
+          <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+            {{compra.date | date:'shortDate'}}
+          </div>
+          <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+            {{compra.code}}
+          </div>
+          <div class="clr-col-lg-2 clr-col-md-2 clr-col-4">
+            {{compra.value | currency:'BRL':'symbol'}}
+          </div>
+          <div class="clr-col-lg-4 clr-col-md-4 clr-col-4">
+            {{compra.cash_back | currency:'BRL':'symbol'}}
+            ( {{(compra.value_cb/100) | percent}} )
+          </div>
+          <div class="clr-col-lg-1 clr-col-md-1 clr-col-1">
+            <button class="btn btn-sm btn-link" (click)=prepararDelete(compra) [disabled]="compra.status == 'Aprovado'">
+              <clr-icon shape="trash" class="is-danger"></clr-icon>
+            </button>
+            <button class="btn btn-sm btn-link" (click)=prepararUpdate(compra) [disabled]="compra.status == 'Aprovado'">
+              <clr-icon shape="pencil"></clr-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <clr-modal [(clrModalOpen)]="modalDelete">
-    <h3 class="modal-title">Exclusão de compra</h3>
-    <div class="modal-body">
-        <p>Deseja excluir a compra selecionada? </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="realizarDelete()">Excluir</button>
-    </div>
+  <h3 class="modal-title">Exclusão de compra</h3>
+  <div class="modal-body">
+    <p>Deseja excluir a compra selecionada? </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="realizarDelete()">Excluir</button>
+  </div>
 </clr-modal>
 
 <clr-modal [(clrModalOpen)]="modalCreate">
-    <h3 class="modal-title">Informar Compra</h3>
-    <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
-            <clr-input-container>
-                <label>Código</label>
-                <input clrInput type="text" [(ngModel)]="itemCreate.code" name="code" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>CPF</label>
-                <input clrInput type="text" [(ngModel)]="itemCreate.cpf" name="cpf" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>Data</label>
-                <input clrInput type="date"  [(ngModel)]="itemCreate.date" name="date" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>Valor</label>
-                <input clrInput type="number" [(ngModel)]="itemCreate.value" name="valor" />
-            </clr-input-container>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
-        <button type="button" class="btn btn-success" (click)="realizarCreate()">Gravar</button>
-    </div>
+  <h3 class="modal-title">Informar Compra</h3>
+  <div class="modal-body">
+    <form clrForm clrLayout="horizontal">
+      <clr-input-container>
+        <label>Código</label>
+        <input clrInput type="text" [(ngModel)]="itemCreate.code" name="code" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>CPF</label>
+        <input clrInput type="text" [(ngModel)]="itemCreate.cpf" name="cpf" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>Data</label>
+        <input clrInput type="date" [(ngModel)]="itemCreate.date" name="date" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>Valor</label>
+        <input clrInput type="number" [(ngModel)]="itemCreate.value" name="valor" />
+      </clr-input-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="realizarCreate()">Gravar</button>
+  </div>
 </clr-modal>
 
 <clr-modal [(clrModalOpen)]="modalUpdate">
-    <h3 class="modal-title">Editar Compra</h3>
-    <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
-            <clr-input-container>
-                <label>Código</label>
-                <input clrInput type="hidden" [(ngModel)]="itemUpdate.id" name="id" />
-                <input clrInput type="text" [(ngModel)]="itemUpdate.code" name="code" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>CPF</label>
-                <input clrInput type="text" [(ngModel)]="itemUpdate.cpf" name="cpf" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>Data</label>
-                <input clrInput type="date"  [(ngModel)]="itemUpdate.date" name="date" />
-            </clr-input-container>
-            <clr-input-container>
-                <label>Valor</label>
-                <input clrInput type="number" [(ngModel)]="itemUpdate.value" name="valor" />
-            </clr-input-container>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
-        <button type="button" class="btn btn-success" (click)="realizarUpdate()">Gravar</button>
-    </div>
+  <h3 class="modal-title">Editar Compra</h3>
+  <div class="modal-body">
+    <form clrForm clrLayout="horizontal">
+      <clr-input-container>
+        <label>Código</label>
+        <input clrInput type="hidden" [(ngModel)]="itemUpdate.id" name="id" />
+        <input clrInput type="text" [(ngModel)]="itemUpdate.code" name="code" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>CPF</label>
+        <input clrInput type="text" [(ngModel)]="itemUpdate.cpf" name="cpf" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>Data</label>
+        <input clrInput type="date" [(ngModel)]="itemUpdate.date" name="date" />
+      </clr-input-container>
+      <clr-input-container>
+        <label>Valor</label>
+        <input clrInput type="number" [(ngModel)]="itemUpdate.value" name="valor" />
+      </clr-input-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancelarModal()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="realizarUpdate()">Gravar</button>
+  </div>
 </clr-modal>

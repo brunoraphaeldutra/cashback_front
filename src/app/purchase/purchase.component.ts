@@ -27,9 +27,11 @@ export class PurchaseComponent implements OnInit {
   }
 
   getPurchases() {
-    this.cashbackService.findPurchase(this.cpf).toPromise().then((data) => {
+    this.cashbackService.findPurchase(this.cpf).subscribe(
+      (data) => {
       this.compras = data.body;
-    }).catch((erro) => {
+    },
+    (erro) => {
       this.erro = true;
       console.log('Erro ao consumir:' + erro.message);
     });
@@ -51,9 +53,9 @@ export class PurchaseComponent implements OnInit {
 
   realizarDelete() {
     this.modalDelete = false;
-    this.cashbackService.deletePurchase(this.itemDelete.id).toPromise().then((data) => {
+    this.cashbackService.deletePurchase(this.itemDelete.id).subscribe((data) => {
       this.getPurchases();
-    }).catch((erro) => {
+    }, (erro) => {
       this.getPurchases();
       console.log('Erro ao deletar:' + erro.message);
     });
@@ -84,10 +86,9 @@ export class PurchaseComponent implements OnInit {
   realizarUpdate() {
     this.modalUpdate = false;
     this.itemUpdate.date = formatDate(this.itemUpdate.date, 'yyyy-MM-ddT00:00:00', 'en-US');
-    //this.itemUpdate.value = this.itemUpdate.value.toString();
-    this.cashbackService.editPurchase(this.itemUpdate).toPromise().then((data) => {
+    this.cashbackService.editPurchase(this.itemUpdate).subscribe((data) => {
       this.getPurchases();
-    }).catch((erro) => {
+    }, (erro) => {
       this.getPurchases();
       console.log('Erro ao criar:' + erro.message);
     });

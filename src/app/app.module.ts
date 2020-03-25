@@ -22,6 +22,9 @@ import { LOCALE_ID } from '@angular/core';
 import localePtBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { PageResellerComponent } from './page-reseller/page-reseller.component';
+import { HolderService } from './Services/HolderService';
+import { PageDashboardComponent } from './page-dashboard/page-dashboard.component';
 
 registerLocaleData(localePtBr);
 
@@ -33,6 +36,8 @@ registerLocaleData(localePtBr);
     NotfoundComponent,
     HeaderComponent,
     PurchaseComponent,
+    PageResellerComponent,
+    PageDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ registerLocaleData(localePtBr);
   providers: [
     CashBackService,
     AuthService,
+    HolderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
