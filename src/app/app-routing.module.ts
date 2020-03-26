@@ -18,6 +18,10 @@ const routes: Routes = [
     component: PrincipalComponent,
     children: [
       {
+        path: '',
+        component: PageDashboardComponent
+      },
+      {
         path: 'dashboard',
         component: PageDashboardComponent
       },
