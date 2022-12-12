@@ -27,7 +27,7 @@
     "@clr/ui": "^2.2.2",
     "@webcomponents/custom-elements": "^1.0.0",
     "angular2-text-mask": "^9.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "path": "^0.12.7",
     "primeicons": "^2.0.0",
     "primeng": "^8.0.4",
